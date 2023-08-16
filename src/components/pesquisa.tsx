@@ -12,7 +12,7 @@ export default function Pesquisar() {
                 <h2 className="text-gray-900 text-lg font-bold">Nome de usuário do GitHub:</h2>
                 <input
                     type="text"
-                    className="border-2 rounded border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
+                    className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <button type="button" className="bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded" onClick={() => getUserGitHub(username)}>
@@ -20,6 +20,5 @@ export default function Pesquisar() {
                 </button>
             </div>
         </section>
-
     )
 }

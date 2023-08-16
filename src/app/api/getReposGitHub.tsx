@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-export async function getReposGitHub(username: String) {
+export async function getReposGitHub(username: string) {
     const repos = await axios.get(`https://api.github.com/users/${username}/repos`);
-    const data = repos.data;
-    return data;
+    return repos.data;
 }

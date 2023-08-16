@@ -11,8 +11,7 @@ export default async function Usuario({
 }: {
     params: { username: string }
 }) {
-    // const user = await axios.get(`https://api.github.com/users/${username}`);
-    // return user.data;
+
     const usernameData = getUserGitHub(username);
 
     const [developer] = await Promise.all([usernameData]);
