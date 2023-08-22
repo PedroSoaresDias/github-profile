@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getUserGitHub } from "@/app/api/getUserGitHub";
 
-export default async function Usuario({username} : { username: string}) {
+export default async function Usuario({ params: { username }, }: { params: { username: string }}) {
 
     const usernameData = await getUserGitHub(username);
 
