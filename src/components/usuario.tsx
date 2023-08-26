@@ -1,15 +1,13 @@
 import Image from "next/image";
 import { getUserGitHub } from "@/app/api/getUserGitHub";
 
-export default async function Usuario({ params: { username }, }: { params: { username: string }}) {
+export default async function Usuario({ username }: { username: string }) {
 
-    const usernameData = await getUserGitHub(username);
+    const developer = await getUserGitHub(username);
 
-    if (!usernameData) {
-        <p>Usuario não encontrado</p>
+    if (!developer) {
+        return <h3>Usuário não encontrado</h3>;
     }
-
-    const [developer] = await Promise.all([usernameData]);
 
     return (
         <section key={developer.id}>

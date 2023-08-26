@@ -1,10 +1,15 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from 'react'
+import { getUserGitHub } from '@/app/api/getUserGitHub';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
+
+    async function fecthDeveloper() {
+        const user = await getUserGitHub(username);
+        setUsername(user.login);
+    }
 
     return (
         <section className="flex min-h-screen items-center justify-center bg-gray-950">
@@ -15,11 +20,9 @@ export default function Pesquisar() {
                     className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <Link href={`/user/${username}`} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
-                    <button type="submit" >
-                        Pesquisar
-                    </button>
-                </Link>
+                <button type="button" onClick={() => {fecthDeveloper(); window.location.href = `/user/${username}`;}} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
+                    Pesquisar
+                </button>
             </div>
         </section>
     )
