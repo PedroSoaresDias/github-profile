@@ -18,7 +18,7 @@ export default async function Usuario({ username }: { username: string }) {
             <p>Tipo da conta: {developer.type ? developer.type : "Desconhecido"}</p>
             <p>Data de criação: {developer.created_at}</p>
             <p>Última atualização: {developer.updated_at}</p>
-            <p>Sua descrição: {developer.bio}</p>
+            <p>Sua descrição: {developer.bio ? developer.bio : "Não Informado"}</p>
             <p>Repositórios públicos: {developer.public_repos}</p>
             <p>Seguidores: {developer.followers}</p>
             <p>Seguindo: {developer.following}</p>
