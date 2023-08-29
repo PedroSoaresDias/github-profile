@@ -1,7 +1,15 @@
 import Pesquisar from "@/components/Pesquisar"
+import Usuario from '@/components/Usuario';
+import { getUserGitHub } from "./api/getUserGitHub";
 
-export default function Home() {
+export default async function Home(username:string) {
+
+  const developer = await getUserGitHub(username)
+
   return (
-  <Pesquisar/>
+    <div>
+      {developer && <Usuario username={developer} />}
+      {!developer && <Pesquisar />}
+    </div>
  )
 }

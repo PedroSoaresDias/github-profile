@@ -2,21 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import { getUserGitHub } from '@/app/api/getUserGitHub';
-import { useRouter } from 'next/navigation';
+import Usuario from './Usuario';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
-    const router = useRouter();
 
     async function fecthDeveloper() {
         const user = await getUserGitHub(username);
-        if (!user) {
+        if (user) {
             alert("Usuário não encontrado");
             return;
         }
 
-        setUsername(user.login);
-        router.push(`/user/${user.login}`)
+        setUsername(user.login)
     }
 
     useEffect(() => {
@@ -38,6 +36,8 @@ export default function Pesquisar() {
                 <button type="submit" onClick={fecthDeveloper} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
                     Pesquisar
                 </button>
+
+                {username && <Usuario username={username} />}
             </div>
         </section>
     )
