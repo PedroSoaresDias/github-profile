@@ -8,7 +8,7 @@ export default function Usuario({ username }: { username: string }) {
     const { data: developer, error } = useSWR(`https://api.github.com/users/${username}`)
 
     if (error) return <div>Erro ao carregar</div>
-    if (!developer) return <div>Carregando...</div>
+    if (!developer) return <div className="flex justify-center items-center text-lg">Carregando...</div>
 
     return (
         <section key={developer.id}>
