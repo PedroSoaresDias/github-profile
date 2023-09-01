@@ -1,27 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { getUserGitHub } from '@/app/api/getUserGitHub';
+import { useState } from 'react'
+import useSWR from 'swr';
 import Usuario from './Usuario';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
+    const { data: foundUser, error } = useSWR(username ? `https://api.github.com/users/${username}` : null);
 
-    async function fecthDeveloper() {
-        const user = await getUserGitHub(username);
-        if (user) {
-            alert("Usuário não encontrado");
-            return;
-        }
-
-        setUsername(user.login)
-    }
-
-    useEffect(() => {
-        if (!username) {
-            alert("Por favor, insira um nome de usuário do GitHub");
-        }
-    }, [username]);
+    if(error) return <div>Erro ao carregar</div>
 
     return (
         <section className="flex min-h-screen items-center justify-center bg-gray-950">
@@ -33,11 +20,11 @@ export default function Pesquisar() {
                     className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button type="submit" onClick={fecthDeveloper} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
+                <button type="submit" onClick={() => setUsername(username)} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
                     Pesquisar
                 </button>
 
-                {username && <Usuario username={username} />}
+                {foundUser ? <Usuario username={foundUser} /> : null}
             </div>
         </section>
     )

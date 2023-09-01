@@ -1,13 +1,14 @@
+'use client'
+
 import Image from "next/image";
-import { getUserGitHub } from "@/app/api/getUserGitHub";
+import useSWR from 'swr';
 
-export default async function Usuario({ username }: { username: string }) {
+export default function Usuario({ username }: { username: string }) {
+    
+    const { data: developer, error } = useSWR(`https://api.github.com/users/${username}`)
 
-    const developer = await getUserGitHub(username);
-
-    if (!developer) {
-        return <h3>Usuário não encontrado</h3>;
-    }
+    if (error) return <div>Erro ao carregar</div>
+    if (!developer) return <div>Carregando...</div>
 
     return (
         <section key={developer.id}>
