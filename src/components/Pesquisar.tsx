@@ -1,16 +1,32 @@
 'use client'
 
-import { useState } from 'react'
-// import useSWR from 'swr';
-// import Usuario from './Usuario';
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
+import useSWR from 'swr';
+import { getUserGitHub } from '@/app/api/getUserGitHub';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
+    const [showModal, setShowModal] = useState(false);
     const router = useRouter();
-    // const { data: developer, error } = useSWR(username ? `https://api.github.com/users/${username}` : null);
 
-    // if(error) return <div>Erro ao carregar</div>
+    const { data: developer, error } = useSWR(username, getUserGitHub)
+
+    const handleSearch = () => {
+        if (developer) {
+            router.push(`user/${username}`)
+        }
+    }
+
+    // const handleCloseModal = () => {
+    //     setShowModal(false);
+    // }
+
+    // useEffect(() => {
+    //     if (developer === undefined && error) {
+    //         setShowModal(true)
+    //     }
+    // }, [developer, error])
 
     return (
         <section className="flex min-h-screen items-center justify-center bg-gray-950">
@@ -22,11 +38,16 @@ export default function Pesquisar() {
                     className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button type="submit" onClick={() => router.push(`/user/${username}`)} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
+                <button type="submit" onClick={handleSearch} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
                     Pesquisar
                 </button>
-
-                {/* {developer ? <Usuario username={developer} /> : null} */}
+{/* 
+                {showModal && (
+                    <div>
+                        <p>Usuário não encontrado</p>
+                        <button onClick={handleCloseModal}>Fechar</button>
+                    </div>
+                )} */}
             </div>
         </section>
     )
