@@ -1,16 +1,16 @@
 'use client'
 
 import { useState } from 'react'
-import useSWR from 'swr';
-import Usuario from './Usuario';
+// import useSWR from 'swr';
+// import Usuario from './Usuario';
 import { useRouter } from 'next/navigation';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
     const router = useRouter();
-    const { data: foundUser, error } = useSWR(username ? `https://api.github.com/users/${username}` : null);
+    // const { data: developer, error } = useSWR(username ? `https://api.github.com/users/${username}` : null);
 
-    if(error) return <div>Erro ao carregar</div>
+    // if(error) return <div>Erro ao carregar</div>
 
     return (
         <section className="flex min-h-screen items-center justify-center bg-gray-950">
@@ -26,7 +26,7 @@ export default function Pesquisar() {
                     Pesquisar
                 </button>
 
-                {foundUser ? <Usuario username={foundUser} /> : null}
+                {/* {developer ? <Usuario username={developer} /> : null} */}
             </div>
         </section>
     )
