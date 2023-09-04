@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import { getUserGitHub } from '@/app/api/getUserGitHub';
 
 export default function Pesquisar() {
     const [username, setUsername] = useState("");
-    const [showModal, setShowModal] = useState(false);
     const router = useRouter();
 
     const { data: developer, error } = useSWR(username, getUserGitHub)
@@ -15,18 +14,10 @@ export default function Pesquisar() {
     const handleSearch = () => {
         if (developer) {
             router.push(`user/${username}`)
+        } else if (error) {
+            alert("Usuário não encontrado")
         }
     }
-
-    // const handleCloseModal = () => {
-    //     setShowModal(false);
-    // }
-
-    // useEffect(() => {
-    //     if (developer === undefined && error) {
-    //         setShowModal(true)
-    //     }
-    // }, [developer, error])
 
     return (
         <section className="flex min-h-screen items-center justify-center bg-gray-950">
@@ -41,13 +32,6 @@ export default function Pesquisar() {
                 <button type="submit" onClick={handleSearch} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
                     Pesquisar
                 </button>
-{/* 
-                {showModal && (
-                    <div>
-                        <p>Usuário não encontrado</p>
-                        <button onClick={handleCloseModal}>Fechar</button>
-                    </div>
-                )} */}
             </div>
         </section>
     )
