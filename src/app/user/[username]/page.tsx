@@ -17,11 +17,22 @@ interface User{
     following: number;
 }
 
-export default function Usuario(username: string) {
+interface UsuarioProps{
+    username: string;
+}
+
+export default function Usuario({username}: UsuarioProps) {
 
     const { data: developer, error } = useSWR<User>(username, getUserGitHub);
     
-    if (error) return <div>Erro ao carregar</div>
+    if (error) {
+        if (error.response && error.response.status === 404) {
+            <div>Usuário não encontrado</div>
+        } else {
+            return <div>Erro ao carregar</div>
+        }
+    }
+
     if (!developer) return <div className="flex justify-center items-center text-4xl">Carregando...</div>
 
     return (
