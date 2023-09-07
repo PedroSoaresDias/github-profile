@@ -9,11 +9,13 @@ export default function Pesquisar() {
     const [username, setUsername] = useState("");
     const router = useRouter();
 
-    const { data: developer } = useSWR(username, getUserGitHub)
+    const { data: developer, error } = useSWR(username, getUserGitHub)
 
     const handleSearch = () => {
         if (developer) {
             router.push(`/user/${username}`)
+        } else if (error) {
+            alert("Usuário não encontrado, digite novamente")
         }
     }
 

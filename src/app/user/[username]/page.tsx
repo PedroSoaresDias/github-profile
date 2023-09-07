@@ -4,10 +4,10 @@ import Image from "next/image";
 import { getUserGitHub } from "@/app/api/getUserGitHub";
 import useSWR from "swr";
 
-interface User{
+interface Developer {
     id: number;
-    login: string;
     avatar_url: string;
+    login: string;
     type: string;
     created_at: string;
     updated_at: string;
@@ -23,7 +23,10 @@ interface UsuarioProps{
 
 export default function Usuario({username}: UsuarioProps) {
 
-    const { data: developer, error } = useSWR<User>(username, getUserGitHub);
+    const { data: developer, error } = useSWR(username, async () => {
+        const user = await getUserGitHub(username);
+        return user.data as Developer;
+    });
     
     if (error) {
         if (error.response && error.response.status === 404) {
@@ -36,18 +39,18 @@ export default function Usuario({username}: UsuarioProps) {
     if (!developer) return <div className="flex justify-center items-center text-4xl">Carregando...</div>
 
     return (
-        <section key={developer?.id}>
-            <Image src={developer?.avatar_url} alt={developer?.login} width={400} height={400} />
+        <section key={developer.id}>
+            <Image src={developer.avatar_url} alt={developer.login} width={400} height={400} />
             <br />
-            <h3>Nome de usuário: {developer?.login}</h3>
+            <h3>Nome de usuário: {developer.login}</h3>
             <br />
-            <p>Tipo da conta: {developer?.type ? developer?.type : "Desconhecido"}</p>
-            <p>Data de criação: {developer?.created_at}</p>
-            <p>Última atualização: {developer?.updated_at}</p>
-            <p>Sua descrição: {developer?.bio ? developer?.bio : "Não Informado"}</p>
-            <p>Repositórios públicos: {developer?.public_repos}</p>
-            <p>Seguidores: {developer?.followers}</p>
-            <p>Seguindo: {developer?.following}</p>
+            <p>Tipo da conta: {developer.type ? developer.type : "Desconhecido"}</p>
+            <p>Data de criação: {developer.created_at}</p>
+            <p>Última atualização: {developer.updated_at}</p>
+            <p>Sua descrição: {developer.bio ? developer.bio : "Não Informado"}</p>
+            <p>Repositórios públicos: {developer.public_repos}</p>
+            <p>Seguidores: {developer.followers}</p>
+            <p>Seguindo: {developer.following}</p>
         </section>
     );
 }
