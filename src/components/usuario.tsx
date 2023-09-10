@@ -1,14 +1,11 @@
-'use client'
-
 import Image from "next/image";
-import useSWR from 'swr';
+import { getUserGitHub } from "@/app/api/getUserGitHub";
 
-export default function Usuario({ username }: { username: string }) {
+export default async function Usuario(username: string) {
     
-    const { data: developer, error } = useSWR(`https://api.github.com/users/${username}`)
+    const developer = await getUserGitHub(username)
 
-    if (error) return <div>Erro ao carregar</div>
-    if (!developer) return <div className="flex justify-center items-center text-lg">Carregando...</div>
+    if (!developer) return <div className="flex justify-center items-center text-4xl">Erro ao carregar</div>
 
     return (
         <section key={developer.id}>

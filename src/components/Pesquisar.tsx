@@ -5,34 +5,35 @@ import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import { getUserGitHub } from '@/app/api/getUserGitHub';
 
-export default function Pesquisar() {
-    const [username, setUsername] = useState("");
+export default function Pesquisar({ username }: { username: string }) {
+    const [developer, setDeveloper] = useState("");
     const router = useRouter();
 
-    const { data: developer, error } = useSWR(username, getUserGitHub)
+    const {data} = useSWR(`https://api.github.com/users/${username}`,async () => {
+        const user = await getUserGitHub(developer);
+        return user.data;
+    })
 
     const handleSearch = () => {
-        if (developer) {
-            router.push(`/user/${username}`)
-        } else if (error) {
+        if (data) {
+            router.push(`/user/${developer}`)
+        } else {
             alert("Usuário não encontrado, digite novamente")
         }
     }
 
     return (
-        <section className="flex min-h-screen items-center justify-center bg-gray-950">
-            <div className="bg-gray-50 p-6 rounded-md flex flex-col">
-                <h2 className="text-gray-900 text-lg font-bold">Nome de usuário do GitHub:</h2>
-                <input
-                    type="text"
-                    value={username}
-                    className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <button type="submit" onClick={handleSearch} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
-                    Pesquisar
-                </button>
-            </div>
-        </section>
+        <>
+            <input
+                type="text"
+                value={developer}
+                className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
+                onChange={(e) => setDeveloper(e.target.value)}
+            />
+            <button type="submit" onClick={handleSearch} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>
+                Pesquisar
+            </button>
+
+        </>
     )
 }
