@@ -9,7 +9,6 @@ export default function Pesquisar() {
     const [loading, setLoading] = useState(false)
     const router = useRouter();
 
-
     const handleSearch = async () => {
         if (!developer) {
             alert("Por favor, insira um nome de usuário")
@@ -19,14 +18,15 @@ export default function Pesquisar() {
         setLoading(true);
 
         try {
-            const user = await getUserGitHub(developer)
+            const user = await getUserGitHub(developer);
+    
             if (user) {
                 router.push(`/user/${user.login}`)
             }
         } catch (error) {
             alert("Ocorreu um erro ao buscar o usuário")
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 

@@ -1,20 +1,39 @@
+import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { getUserGitHub } from "@/app/api/getUserGitHub";
 
-export default async function Usuario(username: string) {
-    
-    let developer;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const username = context.params?.username as string;
+    const developer = await getUserGitHub(username);
 
-    try {
-        developer = await getUserGitHub(username)
-    } catch (error) {
-        return <div className="flex justify-center items-center text-4xl">Erro ao carregar</div>
+    if (!developer) {
+        return {
+            notFound: true,
+        }
     }
 
-    if (!developer) return <div className="flex justify-center items-center text-4xl">Usuário não encontrado</div>
+    return {
+        props: {developer},
+    }
+}
+
+interface Developer{
+    id: number,
+    login: string,
+    avatar_url: string,
+    type: string,
+    created_at: string,
+    updated_at: string,
+    bio: string,
+    public_repos: number,
+    followers: number,
+    following: number,
+}
+
+export default function Usuario({ developer }: { developer: Developer }) {
 
     const createdAt = new Date(developer.created_at).toLocaleDateString();
-    const updadedAt = new Date(developer.updaded_at).toLocaleDateString();
+    const updadedAt = new Date(developer.updated_at).toLocaleDateString();
 
     return (
         <section key={developer.id}>
