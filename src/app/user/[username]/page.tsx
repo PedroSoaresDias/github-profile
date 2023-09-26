@@ -1,36 +1,9 @@
-import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { getUserGitHub } from "@/app/api/getUserGitHub";
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const username = context.params?.username as string;
+export default async function Usuario(username: string) {
+
     const developer = await getUserGitHub(username);
-
-    if (!developer) {
-        return {
-            notFound: true,
-        }
-    }
-
-    return {
-        props: {developer},
-    }
-}
-
-interface Developer{
-    id: number,
-    login: string,
-    avatar_url: string,
-    type: string,
-    created_at: string,
-    updated_at: string,
-    bio: string,
-    public_repos: number,
-    followers: number,
-    following: number,
-}
-
-export default function Usuario({ developer }: { developer: Developer }) {
 
     const createdAt = new Date(developer.created_at).toLocaleDateString();
     const updadedAt = new Date(developer.updated_at).toLocaleDateString();
