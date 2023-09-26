@@ -10,7 +10,7 @@ export default async function Usuario(username: string) {
 
     return (
         <section key={developer.id}>
-            <Image src={developer.avatar_url} alt={developer.login} width={400} height={400} />
+            <Image src={developer.avatar_url} alt={developer.login} width={500} height={500} />
             <br />
             <h3>Nome de usuário: {developer.login}</h3>
             <br />
