@@ -9,14 +9,14 @@ export default async function Usuario({ params: { username }, }: { params: { use
 
         if(!developer) return <p>Usuário não encontrado</p>
 
-        const createdAt = new Date(developer.created_at).toLocaleDateString();
-        const updadedAt = new Date(developer.updated_at).toLocaleDateString();
+        const createdAt = new Date(developer.created_at).toLocaleDateString("pt-BR");
+        const updadedAt = new Date(developer.updated_at).toLocaleDateString("pt-BR");
 
         return (
-            <section key={developer.id}>
+            <section className="py-3 px-4 bg-black min-h-screen text-gray-50" key={developer.id}>
                 <Link href={"/"} className="my-10 ml-5 font-semibold text-lg">Voltar para a página principal</Link>
                 <br />
-                <Image src={developer.avatar_url} alt={developer.login} width={350} height={350} />
+                <Image className="rounded-full pt-6" src={developer.avatar_url} alt={developer.login} width={300} height={300} />
                 <br />
                 <h3>Nome de usuário: {developer.login}</h3>
                 <br />
