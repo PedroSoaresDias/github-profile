@@ -1,46 +1,34 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation';
-import { getUserGitHub } from '@/app/api/getUserGitHub';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
-export default function Pesquisar() {
-    const [developer, setDeveloper] = useState("");
-    const [loading, setLoading] = useState(false)
-    const router = useRouter();
+export default function Pesquisar({placeholder}: {placeholder: string}) {
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const {replace} = useRouter();
 
-    const handleSearch = async () => {
-        if (!developer) {
-            alert("Por favor, insira um nome de usuário")
-            return;
+    const handleSearch = useDebouncedCallback((term) => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', '1');
+        if (term) {
+            params.set('query', term);
+        } else {
+            params.delete('query');
         }
 
-        setLoading(true);
-
-        try {
-            const user = await getUserGitHub(developer);
-    
-            if (user) {
-                router.push(`/user/${user.login}`)
-            }
-        } catch (error) {
-            alert("Ocorreu um erro ao buscar o usuário")
-        } finally {
-            setLoading(false);
-        }
-    }
+        replace(`${pathname}?${params.toString()}`);
+    }, 200)
 
     return (
-        <>
-            <label htmlFor="username" className='text-gray-900 text-lg font-bold'>Nome de usuário do GitHub:</label>
+        <div>
+            <label htmlFor="username" className='text-gray-50 text-lg font-bold'>Digita o nome de usuário do GitHub</label>
             <input
-                type="text"
-                id='username'
-                value={developer}
-                className="border-2 rounded text-gray-950 border-purple-600 transition-all duration-100 hover:shadow focus:bg-transparent hover:shadow-purple-700 my-5"
-                onChange={(e) => setDeveloper(e.target.value)}
+                className='w-9/12 bg-gray-950 border-2 border-gray-200 shadow shadow-gray-100 text-gray-50 rounded-md text-base placeholder:text-gray-400'
+                placeholder={placeholder}
+                onChange={(e) => { handleSearch(e.target.value) }}
+                defaultValue={searchParams.get('query')?.toString()}
             />
-            <button type='button' onClick={handleSearch} className='bg-purple-700 hover:bg-purple-500 transition-colors duration-100 text-center p-2 rounded'>{loading ? "Pesquisando o Usuário..." : "Pesquisar o Usuário"}</button>
-        </>
+        </div>
     )
 }
