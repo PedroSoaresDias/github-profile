@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getUserGitHub } from "@/app/api/getUserGitHub";
+import { getUserGitHub } from "@/app/lib/getUserGitHub";
 
 export default async function Usuario(username: string) {
     

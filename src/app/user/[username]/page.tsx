@@ -1,4 +1,4 @@
-import { getUserGitHub } from "@/app/api/getUserGitHub";
+import { getUserGitHub } from "@/app/lib/getUserGitHub";
 import Image from "next/image";
 import Link from "next/link";
 
