@@ -16,7 +16,7 @@ export default async function Usuario({ params: { username }, }: { params: { use
             <section className="py-3 px-4 bg-black min-h-screen text-gray-50" key={developer.id}>
                 <Link href={"/"} className="my-10 ml-5 font-semibold text-lg">Voltar para a página principal</Link>
                 <br />
-                <Image className="rounded-full pt-6" src={developer.avatar_url} alt={developer.login} width={300} height={300} />
+                <Image className="rounded-3xl mt-6" src={developer.avatar_url} alt={developer.login} width={300} height={300} />
                 <br />
                 <h3>Nome de usuário: {developer.login}</h3>
                 <br />

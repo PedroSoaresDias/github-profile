@@ -24,7 +24,7 @@ export default function Pesquisar({placeholder}: {placeholder: string}) {
         <div className='flex flex-col'>
             <label htmlFor="username" className='text-gray-50 text-sm md:text-base sm:text-lg font-bold'>Digita o nome de usuário do GitHub</label>
             <input
-                className='my-3 p-1 bg-gray-950 shadow shadow-gray-100 text-gray-50 rounded-md text-base placeholder:text-gray-400'
+                className='my-3 p-1 bg-gray-950 shadow border-2 border-gray-300 shadow-gray-100 text-gray-50 rounded-md text-base placeholder:text-gray-400'
                 placeholder={placeholder}
                 onChange={(e) => { handleSearch(e.target.value) }}
                 defaultValue={searchParams.get('query')?.toString()}
