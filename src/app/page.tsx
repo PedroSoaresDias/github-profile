@@ -1,10 +1,6 @@
 import Pesquisar from "@/components/Pesquisar";
-import { getUserGitHub } from "./lib/getUserGitHub";
+import { getUserGitHub } from "./lib/data";
 import { GetUser } from "@/components/Buttons";
-
-type Dev = {
-  login: string;
-}
 
 export default async function Home({ searchParams }: {
   searchParams?: {

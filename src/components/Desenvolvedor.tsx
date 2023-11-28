@@ -1,19 +1,19 @@
 import Image from "next/image";
-import { getUserGitHub } from "@/app/lib/getUserGitHub";
+import { getUserGitHub } from "@/app/lib/data";
 
-export default async function Usuario(username: string) {
+export default async function Desenvolvedor(username: string) {
     
-    const developer = await getUserGitHub(username)
+    const developer: Developer = await getUserGitHub(username)
 
     if (!developer) return <div className="flex justify-center items-center text-4xl">Erro ao carregar</div>
 
     return (
         <section key={developer.id}>
-            <Image src={developer.avatar_url} alt={developer.login} width={400} height={400} />
+            <Image src={developer.avatar_url} alt={developer.login} width={300} height={300} />
             <br />
             <h3>Nome de usuário: {developer.login}</h3>
             <br />
-            <p>Tipo da conta: {developer.type ? developer.type : "Desconhecido"}</p>
+            <p>Tipo da conta: {developer.type}</p>
             <p>Data de criação: {developer.created_at}</p>
             <p>Última atualização: {developer.updated_at}</p>
             <p>Sua descrição: {developer.bio ? developer.bio : "Não Informado"}</p>

@@ -1,11 +1,11 @@
-import { getUserGitHub } from "@/app/lib/getUserGitHub";
+import { getUserGitHub } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Usuario({ params: { username } }: { params: { username: string } }) {
+export default async function Page({ params: { username } }: { params: { username: string } }) {
 
     try {
-        const developer = await getUserGitHub(username);
+        const developer: Developer = await getUserGitHub(username);
 
         if (!developer) return <p>Usuário não encontrado</p>
 
@@ -19,10 +19,10 @@ export default async function Usuario({ params: { username } }: { params: { user
                 <div className="flex flex-col  justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
                     <Image className="rounded-3xl mt-3" src={developer.avatar_url} alt={developer.login} width={300} height={300} />
                     <br />
-                    <h3>{developer.login}</h3>
+                    <h3 className="text-center inline-block">{developer.login}</h3>
                     <br />
                     <div className="justify-start gap-1 p-1 m-1">
-                        <p>Tipo da conta: {developer.type ? developer.type : "Desconhecido"}</p>
+                        <p>Tipo da conta: {developer.type}</p>
                         <p>Data de criação: {createdAt}</p>
                         <p>Última atualização: {updadedAt}</p>
                         <p>Sua descrição: {developer.bio ? developer.bio : "Não Informado"}</p>
