@@ -39,17 +39,17 @@ export default async function Page({ params: { username } }: { params: { usernam
                     </div>
                 </section>
                 <section className="bg-gray-900 py-3">
-                    <div className="grid grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
                         {repos.map((repo: Repos) => (
                             <div
                                 key={repo.id}
-                                className="bg-gray-700 w-12 p-2 border-2 rounded-lg border-gray-800 shadow shadow-white"
+                                className="bg-gray-700 p-2 mx-3 border-2 rounded-lg border-gray-800 shadow shadow-white"
                             >
-                                <h3>{repo.name}</h3>
+                                <h3 className="mb-3">{repo.name}</h3>
                                 <a
                                     href={repo.html_url}
                                     target="_blank"
-                                    className="no-underline px-3 py-2 mt-3 bg-purple-700 text-white hover:bg-purple-800 transition-all duration-300 rounded-lg"
+                                    className="no-underline px-3 py-2 bg-purple-700 text-white hover:bg-purple-800 transition-all duration-300 rounded-lg"
                                 >
                                     Ver Repositório
                                 </a>
