@@ -12,6 +12,14 @@ export async function getUserGitHub(username: string) {
 }
 
 export async function getReposGitHub(username: string) {
-    const repos = await fetch(`https://api.github.com/users/${username}/repos`);
-    return repos.json();
+    try {
+        const repos = await fetch(`https://api.github.com/users/${username}/repos`, { cache: 'no-store' });
+
+        if (!repos.ok) throw new Error("Nenhum repositório encontrado");
+
+        return repos.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }

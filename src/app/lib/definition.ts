@@ -1,9 +1,9 @@
-type Dev = {
+interface Dev {
     login: string;
 }
 
-type Developer = {
-    id: number;
+interface Developer {
+    id: string;
     login: string;
     avatar_url: string;
     type: string;
@@ -15,8 +15,8 @@ type Developer = {
     following: number;
 }
 
-type Repos = {
-    id: number;
+interface Repos {
+    id: string;
     name: string;
     html_url: string;
 }
