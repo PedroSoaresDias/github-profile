@@ -48,7 +48,7 @@ export default async function Page({ params: { username } }: { params: { usernam
                         </div>
                     </section>
                     <section className="bg-gray-900 text-gray-50 py-6">
-                        <h3 className="text-center text-lg font-bold">Repositórios do usuário</h3>
+                        <h3 className="text-center my-3 text-lg font-bold">Repositórios do usuário</h3>
                         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
                             {repos.map((repo: Repos) => (
                                 <div
