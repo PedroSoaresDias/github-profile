@@ -13,9 +13,9 @@ export default async function Page({ params: { username } }: { params: { usernam
 
         if (!developer) {
             return (
-                <div className="flex flex-col min-h-screen justify-center items-center">
+                <div className="flex flex-col bg-black text-gray-50 min-h-screen justify-center items-center">
                     <div className=" text-4xl">Usuário não encontrado</div>
-                    <Link href={"/"} className="mt-6 text-center text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-800 ">Retornar para pesquisa</Link>
+                    <Link href={"/"} className="mt-6 text-center text-gray-50 text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-800 ">Retornar para pesquisa</Link>
                 </div>
             )
         }
@@ -29,7 +29,7 @@ export default async function Page({ params: { username } }: { params: { usernam
             <>
                 <Suspense fallback={<div className="bg-black min-h-screen flex justify-center items-center">Carregando...</div>}>
                     <section className="py-2 flex flex-col justify-center items-center bg-black min-h-screen text-gray-50" key={developer.id}>
-                        <Link href={"/"} className="my-3 text-center justify-start font-semibold text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-800 ">Retornar para pesquisa</Link>
+                        <Link href={"/"} className="my-3 text-center text-gray-50 justify-start font-semibold text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-800 ">Retornar para pesquisa</Link>
                         <br />
                         <div className="flex flex-col  justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
                             <Image className="rounded-3xl mt-3" src={developer.avatar_url} alt={developer.login} width={300} height={300} />

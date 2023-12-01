@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GitHub Profile
 
-## Getting Started
+Esse projeto foi desenvolvido para possa pesquisar o usuário do GitHub, onde mostra sobre ele como:(nome de usuário, data de criação, data de atualização, sua descrição e etc.), e mostra os seus repositórios que estão definidos como público.
 
-First, run the development server:
+Para visualizar o projeto, [clice aqui](https://github.profile-lac.vercel.app).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Como foi o desenvolvimento
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- [Next.JS](https://nextjs.org/) com a configuração App Router.
+- React através do Framework Next.JS para usar o conceito do React Server Components.
+- TypeScript para desenvolver o projeto e deixar a tipagem mais robusta.
+- [Tailwind CSS](https://tailwindcss.com/) para fazer a estilização do projeto.
+- API do GitHub para obter os dados do usuário e seus repositórios.
+
+## A utilização da API
+
+A API do GitHub é usada da seguinte forma:
+
+A forma de encontrar o usuário:
+``` bash
+https://api.github.com/users/{username}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A forma para obter os repositórios do usuário:
+``` bash
+https://api.github.com/users/{username}/repos
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## A ideia do projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A ideia para desenvolver esse projeto foi o seguinte, na página principal, possui um campo de pesquisa onde colocar o nome do usuário da plataforma, aparece um botão quando a API encontra o usuário, ao clicar no botão, vai a página do usuário escolhido, que mostra as informações sobre ele e seus repositórios, e um botão que vai para o repositório do GitHub.
 
-## Learn More
+## Caso não encontro o usuário
 
-To learn more about Next.js, take a look at the following resources:
+Se a busca não retornar resultados, algumas razões podem ser:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- O usuário não existe na plataforma GitHub.
+- O usuário foi digitado incorretamente, mesmo que tenha certeza de quem está procurando.
+- A API pode não estar disponível no momento devido ao alcance do limite de acessos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Dicas:**
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Verifique a ortografia do nome de usuário.
+- Certifique-se de que a API do GitHub está acessível.
