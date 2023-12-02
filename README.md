@@ -2,7 +2,7 @@
 
 Esse projeto foi desenvolvido para possa pesquisar o usuário do GitHub, onde mostra sobre ele como:(nome de usuário, data de criação, data de atualização, sua descrição e etc.), e mostra os seus repositórios que estão definidos como público.
 
-Para visualizar o projeto, [clice aqui](https://github.profile-lac.vercel.app).
+Para visualizar o projeto, [clice aqui](https://github-profile-lac.vercel.app).
 
 ## Como foi o desenvolvimento
 
