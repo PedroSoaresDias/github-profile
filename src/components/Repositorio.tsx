@@ -17,7 +17,7 @@ export async function Repositorio({ repository }: { repository: string }) {
                         <a
                             href={repo.html_url}
                             target="_blank"
-                            className="no-underline px-3 py-2 bg-purple-700 text-white hover:bg-purple-800 transition-all duration-300"
+                            className="no-underline px-5 py-2 text-base bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300 rounded-lg"
                         >
                             Ver Repositório
                         </a>
