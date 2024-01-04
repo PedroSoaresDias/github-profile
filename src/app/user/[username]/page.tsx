@@ -1,4 +1,4 @@
-import { getReposGitHub, getUserGitHub } from "@/app/lib/data";
+import { getRepositoriesGitHub, getUserGitHub } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -7,9 +7,9 @@ export default async function Page({ params: { username } }: { params: { usernam
 
     try {
         const developerData = await getUserGitHub(username);
-        const reposData = await getReposGitHub(username);
+        const repositoriesData = await getRepositoriesGitHub(username);
 
-        const [developer, repos] = await Promise.all([developerData, reposData])
+        const [developer, repositories] = await Promise.all([developerData, repositoriesData])
 
         if (!developer) {
             return (
@@ -23,7 +23,7 @@ export default async function Page({ params: { username } }: { params: { usernam
         const createdAt = new Date(developer.created_at).toLocaleDateString("pt-BR");
         const updadedAt = new Date(developer.updated_at).toLocaleDateString("pt-BR");
 
-        if (!repos) return <div className="py-12 bg-gray-900 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
+        if (!repositories) return <div className="py-12 bg-gray-900 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
 
         return (
             <>
@@ -50,14 +50,14 @@ export default async function Page({ params: { username } }: { params: { usernam
                     <section className="bg-gray-900 text-gray-50 py-6">
                         <h3 className="text-center mb-6 text-lg font-bold">Repositórios do usuário</h3>
                         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
-                            {repos.map((repo: Repos) => (
+                            {repositories.map((repository: Repos) => (
                                 <div
-                                    key={repo.id}
+                                    key={repository.id}
                                     className="bg-gray-700 p-2 mx-3 border-2 rounded-lg border-gray-800 shadow shadow-white"
                                 >
-                                    <h3 className="mb-3">{repo.name}</h3>
+                                    <h3 className="mb-3">{repository.name}</h3>
                                     <a
-                                        href={repo.html_url}
+                                        href={repository.html_url}
                                         target="_blank"
                                         className="no-underline px-5 py-2 text-base bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300 rounded-lg"
                                     >
