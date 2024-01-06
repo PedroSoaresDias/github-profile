@@ -15,11 +15,11 @@ export default async function Page({ searchParams }: {
     <section className="min-h-screen bg-gray-950">
       <div className="py-5 px-10">
         <Pesquisar placeholder="Pesquisar usuário..." />
-        {developers != null && <p>Usuários disponíveis: {developers.total_count}</p>}
+        {developers && <p>Usuários disponíveis: {developers.total_count}</p>}
       </div>
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
-          {developers != null && developers.items.map((developer: Developers) => (
+          {developers && developers.items.map((developer: Developers) => (
             <div key={developer.id} className="border-2 border-white rounded-lg w-50 text-center shadow shadow-gray-500 p-3">
               <Image
                 src={developer.avatar_url}
