@@ -6,7 +6,7 @@ import { Suspense } from "react";
 export default async function Page({ params: { username } }: { params: { username: string } }) {
 
   try {
-    const developerData = await getUserGitHub(username);
+    const developerData: Developer = await getUserGitHub(username);
     const repositoriesData = await getRepositoriesGitHub(username);
 
     const [developer, repositories] = await Promise.all([developerData, repositoriesData])
@@ -34,7 +34,7 @@ export default async function Page({ params: { username } }: { params: { usernam
             <div className="flex flex-col  justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
               <Image className="rounded-3xl mt-3" src={developer.avatar_url} alt={developer.login} width={300} height={300} />
               <br />
-              <h3 className="text-center inline-block">{developer.login}</h3>
+              <h3 className="text-center font-semibold inline-block">{developer.login}</h3>
               <br />
               <div className="justify-start gap-1 p-1 m-1">
                 <p>Tipo da conta: {developer.type}</p>
@@ -47,7 +47,7 @@ export default async function Page({ params: { username } }: { params: { usernam
               </div>
               <a
                 href={developer.html_url}
-                className="text-center bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 py-2 px-6 rounded-lg text-lg duration-300 my-2 transition-all"
+                className="text-center bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 py-2 px-10 rounded-lg text-lg duration-300 mb-3 transition-all"
                 target="_blank"
               >
                 Saiba mais

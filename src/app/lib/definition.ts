@@ -23,9 +23,7 @@ interface Repos {
 }
 
 interface Developers {
-  items: {
-    login: string;
-    id: number;
-    avatar_url: string;
-  }
+  login: string;
+  id: number;
+  avatar_url: string;
 }

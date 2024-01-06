@@ -1,6 +1,6 @@
 export async function getUserGitHub(username: string) {
   try {
-    const user = await fetch(`https://api.github.com/requests/${username}`, { cache: 'no-store' });
+    const user = await fetch(`https://api.github.com/users/${username}`, { cache: 'no-store' });
 
     if (!user.ok) {
       const errorResponse = await user.json();
@@ -34,7 +34,7 @@ export async function getRepositoriesGitHub(username: string) {
 
 export async function getSearchUserGitHub(username: string) {
   try {
-    const search = await fetch(`https://api.github.com/request/users?q=${username}`, { cache: 'no-store' });
+    const search = await fetch(`https://api.github.com/search/users?q=${username}`, { cache: 'no-store' });
 
     if (!search.ok) {
       const errorResponse = await search.json();

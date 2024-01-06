@@ -15,22 +15,22 @@ export default async function Developers({ searchParams }: {
     <section className="min-h-screen bg-gray-950">
       <div>
         <Pesquisar placeholder="Pesquisar usuário..." />
-        <p>Usuários disponíveis: {developers.total_count}</p>
+        {developers != null && <p>Usuários disponíveis: {developers.total_count}</p>}
       </div>
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
-          {developers.map((developer: Developers) => {
-            <div key={developer.items.id} className="border-2 border-white rounded-lg shadow shadow-gray-500 p-3">
+          {developers != null && developers.items.map((developer: Developers) => {
+            <div key={developer.id} className="border-2 border-white rounded-lg shadow shadow-gray-500 p-3">
               <Image
-                src={developer.items.avatar_url}
-                alt={developer.items.login}
+                src={developer.avatar_url}
+                alt={developer.login}
                 width={85}
                 height={85}
                 quality={75}
                 className="rounded-full my-2"
               />
-              <h2 className="text-center font-semibold text-white">{developer.items.login}</h2>
-              {developer != null && <GetUser username={developer.items.login} />}
+              <h2 className="text-center font-semibold text-white">{developer.login}</h2>
+              {developer != null && <GetUser username={developer.login} />}
             </div>
           })}
         </div>
