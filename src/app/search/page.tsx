@@ -22,6 +22,7 @@ export default async function Page({ searchParams }: {
           {developers && developers.items.map((developer: Developers) => (
             <div key={developer.id} className="border-2 border-white rounded-lg w-50 text-center shadow shadow-gray-500 p-3">
               <Image
+                unoptimized
                 src={developer.avatar_url}
                 alt={developer.login}
                 width={100}
