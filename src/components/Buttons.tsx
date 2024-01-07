@@ -10,3 +10,12 @@ export function GetUser({ username }: { username: string }) {
     </Link>
   )
 }
+
+export function UserNotFound() {
+  return (
+    <div className="flex flex-col bg-black text-gray-50 min-h-screen justify-center items-center">
+      <div className=" text-4xl">Usuário não encontrado</div>
+      <Link href={"/"} className="mt-6 text-center text-gray-50 text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-800 ">Retornar para pesquisa</Link>
+    </div>
+  )
+}
