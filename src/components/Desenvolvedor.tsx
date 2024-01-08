@@ -28,14 +28,14 @@ export async function Desenvolvedor({ username }: { username: string }) {
             <p>Seguidores: {developer.followers}</p>
             <p>Seguindo: {developer.following}</p>
           </div>
-          <a
-            href={developer.html_url}
-            className="text-center bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 py-2 px-5 rounded-lg text-lg duration-300 mb-3 transition-all"
-            target="_blank"
-          >
-            Saiba mais
-          </a>
         </div>
+        <a
+          href={developer.html_url}
+          className="text-center bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 py-2 px-5 my-3 rounded-lg text-lg duration-300 mb-3 transition-all"
+          target="_blank"
+        >
+          Saiba mais
+        </a>
       </section>
     );
   } catch (error) {

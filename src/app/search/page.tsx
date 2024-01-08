@@ -15,7 +15,7 @@ export default async function Page({ searchParams }: {
     <section className="min-h-screen bg-gray-950">
       <div className="py-5 px-10">
         <Pesquisar placeholder="Pesquisar usuário..." />
-        {developers && <p>Usuários disponíveis: {developers.total_count}</p>}
+        {developers && <p className="text-white font-medium text-lg">Usuários disponíveis: {developers.total_count}</p>}
       </div>
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">

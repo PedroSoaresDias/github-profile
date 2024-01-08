@@ -12,9 +12,9 @@ export default async function Page({ params: { username } }: { params: { usernam
 
     return (
       <>
-        <Suspense fallback={<div className="bg-black min-h-screen flex justify-center items-center">Carregando...</div>}>
+        <Suspense fallback={<div className="bg-black min-h-screen flex justify-center items-center text-white font-semibold">Carregando...</div>}>
           <Desenvolvedor username={developer.login} />
-          <Repositorio repository={developer.login} />
+          {developer.public_repos != 0 && <Repositorio repository={developer.login} />}
         </Suspense>
       </>
     );
