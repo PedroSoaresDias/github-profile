@@ -1,7 +1,10 @@
-import { getRepositoriesGitHub } from "@/app/lib/data";
+import { getRepositoriesByPage } from "@/app/lib/data";
 
-export async function Repositorio({ repository }: { repository: string }) {
-  const repositories = await getRepositoriesGitHub(repository);
+export async function Repositorio({ repository, currentPage }: {
+  repository: string;
+  currentPage: number;
+}) {
+  const repositories = await getRepositoriesByPage(repository, currentPage);
 
   if (!repositories) return <div className="py-12 bg-gray-900 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
 
