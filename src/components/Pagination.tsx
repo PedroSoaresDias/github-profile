@@ -73,10 +73,14 @@ function PaginationNumber({ page, href, isActive, position, }: {
     },
   );
 
+  const ariaLabel = isActive || position === 'middle'
+    ? `${page} (Ativo)`
+    : `Ir para a Página ${page}`;
+
   return isActive || position === 'middle' ? (
     <div className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} aria-label={ariaLabel} role='button'>
       {page}
     </Link>
   );
@@ -97,6 +101,10 @@ function PaginationArrow({ href, direction, isDisabled, }: {
     },
   );
 
+  const ariaLabel = isDisabled
+    ? `${direction === 'left' ? 'Página Anterior' : 'Próxima Página'} (Desativado)`
+    : `${direction === 'left' ? 'Página Anterior' : 'Próxima Página'}`;
+
   const icon = direction === 'left' ? (
     <MdKeyboardDoubleArrowLeft className="w-4" />
   ) : (
@@ -106,7 +114,7 @@ function PaginationArrow({ href, direction, isDisabled, }: {
   return isDisabled ? (
     <div className={className}>{icon}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} aria-label={ariaLabel} role='button'>
       {icon}
     </Link>
   )
