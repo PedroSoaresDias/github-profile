@@ -24,7 +24,11 @@ export default async function Page({ params: { username }, searchParams }: {
         <Suspense fallback={<div className="bg-black min-h-screen flex justify-center items-center text-white font-semibold">Carregando...</div>}>
           <Desenvolvedor username={developer.login} />
           {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
-          {developer.public_repos > 30 && totalPages != null && <Pagination totalPages={totalPages}/>}
+          {developer.public_repos > 30 && totalPages != null && (
+            <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
+              <Pagination totalPages={totalPages} />
+            </div>
+          )}
         </Suspense>
       </>
     );
