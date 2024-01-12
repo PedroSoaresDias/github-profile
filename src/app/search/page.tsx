@@ -1,17 +1,14 @@
 import { getSearchUserGitHub } from "@/app/lib/data";
 import Pesquisar from "../../components/Pesquisar";
-// import Image from "next/image";
-// import { GetUser } from "../../components/Buttons";
-import Developers from "@/components/Developers";
+import Image from "next/image";
+import { GetUser } from "../../components/Buttons";
 
 export default async function Page({ searchParams }: {
   searchParams?: {
     query?: string;
-    page?: string;
   }
 }) {
   const query = searchParams?.query || '';
-  const currentPage = Number(searchParams?.page) || 1;
   const developers = await getSearchUserGitHub(query);
 
   return (
@@ -20,8 +17,7 @@ export default async function Page({ searchParams }: {
         <Pesquisar placeholder="Pesquisar usuário..." />
         {developers && <p className="text-white font-medium text-lg">Usuários disponíveis: {developers.total_count}</p>}
       </div>
-      <Developers query={query} currentPage={currentPage} />
-      {/* <div>
+      <div>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
           {developers && developers.items.map((developer: Developers) => (
             <div key={developer.id} className="border-2 border-white rounded-lg w-50 text-center shadow shadow-gray-500 p-3">
@@ -39,7 +35,7 @@ export default async function Page({ searchParams }: {
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
     </section>
   )
 }
