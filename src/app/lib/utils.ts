@@ -1,23 +1,21 @@
 export const generatePagination = (currentPage: number, totalPages: number) => {
-  if (totalPages <= 7) {
+  const maxVisiblePages = 7;
+
+  if (totalPages <= maxVisiblePages) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
+  const startPages = [1, 2, 3];
+  const endPages = [totalPages - 1, totalPages];
+  const middlePages = [currentPage - 1, currentPage, currentPage + 1];
+
   if (currentPage <= 3) {
-    return [1, 2, 3, '...', totalPages - 1, totalPages];
+    return [...startPages, '...', ...endPages];
   }
 
   if (currentPage >= totalPages - 2) {
-    return [1, 2, '...', totalPages - 2, totalPages - 1, totalPages];
+    return [...startPages, '...', totalPages - 2, ...endPages];
   }
 
-  return [
-    1,
-    '...',
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    '...',
-    totalPages,
-  ];
+  return [startPages[0], '...', ...middlePages, '...', endPages[0]];
 };

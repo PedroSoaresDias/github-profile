@@ -72,8 +72,8 @@ export async function getRepositoriesGitHub(username: string) {
       throw new Error(errorMessage);
     }
 
-    const totalItems = await repos.json();
-    const totalPages = calculateTotalPagesWithModulo(totalItems, REPOS_BY_PAGE);
+    const { public_repos } = await getUserGitHub(username);
+    const totalPages = calculateTotalPagesWithModulo(public_repos, REPOS_BY_PAGE);
     return totalPages;
   } catch (error) {
     console.error(error);
@@ -92,7 +92,7 @@ export async function getSearchUserGitHub(username: string) {
     }
 
     const { total_count, items } = await search.json();
-    const totalPages = Math.ceil(total_count / USERS_BY_PAGE);
+    const totalPages = calculateTotalPagesWithModulo(total_count, USERS_BY_PAGE);
     return {total_count, items, totalPages}
   } catch (error) {
     console.error(error);

@@ -6,10 +6,17 @@ import Link from 'next/link';
 import { generatePagination } from '@/app/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
+const PAGINATION_STYLE = {
+  BASE: 'flex h-10 w-10 items-center justify-center text-sm border',
+  ACTIVE: 'z-10 bg-purple-600 border-purple-600 text-white',
+  HOVER: 'hover:bg-purple-800',
+  DISABLED: 'pointer-events-none text-gray-300',
+}
+
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) | 1;
+  const currentPage = Number(searchParams.get("page")) || 1;
   const allPages = generatePagination(currentPage, totalPages);
 
   const createPageURL = (pageNumber: number | string) => {
@@ -20,7 +27,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <>
-      <div className='inline-flex'>
+      <div className='inline-flex' role='navigation' aria-label='Navegação de Páginas'>
         <PaginationArrow
           direction='left'
           href={createPageURL(currentPage - 1)}
@@ -40,10 +47,10 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                 key={page}
                 href={createPageURL(page)}
                 page={page}
-                position={position}
                 isActive={currentPage === page}
+                position={position}
               />
-            );
+            )
           })}
         </div>
         <PaginationArrow
@@ -56,31 +63,29 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   )
 }
 
-function PaginationNumber({ page, href, isActive, position, }: {
+function PaginationNumber({ page, href, isActive, position }: {
   page: number | string;
   href: string;
   position?: 'first' | 'last' | 'middle' | 'single';
   isActive: boolean;
 }) {
   const className = clsx(
-    'flex h-10 w-10 items-center justify-center text-sm border',
+    PAGINATION_STYLE.BASE,
     {
       'rounded-l-md': position === 'first' || position === 'single',
       'rounded-r-md': position === 'last' || position === 'single',
-      'z-10 bg-purple-600 border-purple-600 text-white': isActive,
-      'hover:bg-gray-100': !isActive && position !== 'middle',
+      [PAGINATION_STYLE.ACTIVE]: isActive,
+      [PAGINATION_STYLE.HOVER]: !isActive && position !== 'middle',
       'text-gray-300': position === 'middle',
     },
   );
 
-  const ariaLabel = isActive || position === 'middle'
-    ? `${page} (Ativo)`
-    : `Ir para a Página ${page}`;
+  const ariaLabel = isActive ? `${page} (Página Atual)` : `Ir para a Página ${page}`;
 
   return isActive || position === 'middle' ? (
     <div className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className} aria-label={ariaLabel} role='button'>
+    <Link href={href} className={className} aria-label={ariaLabel} role='button' aria-current={isActive ? 'page' : undefined}>
       {page}
     </Link>
   );
@@ -92,12 +97,12 @@ function PaginationArrow({ href, direction, isDisabled, }: {
   isDisabled?: boolean;
 }) {
   const className = clsx(
-    'flex h-10 w-10 items-center justify-center rounded-md border',
+    PAGINATION_STYLE.BASE,
     {
-      'pointer-events-none text-gray-300': isDisabled,
-      'hover:bg-gray-100': !isDisabled,
-      'mr-2 md:mr-4': direction === 'left',
-      'ml-2 md:ml-4': direction === 'right',
+      [PAGINATION_STYLE.DISABLED]: isDisabled,
+      [PAGINATION_STYLE.HOVER]: !isDisabled,
+      'mr-2 rounded-md md:mr-4': direction === 'left',
+      'ml-2 rounded-md md:ml-4': direction === 'right',
     },
   );
 
