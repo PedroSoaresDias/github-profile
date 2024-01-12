@@ -11,11 +11,11 @@ export default async function Page({ params: { username }, searchParams }: {
     page?: string;
   }
 }) {
-  const currentPage = Number(searchParams?.page) ?? 1;
+  const currentPage = Number(searchParams?.page) || 1;
 
   try {
     const developer: Developer = await getUserGitHub(username);
-    const totalPages = await getRepositoriesGitHub(username)
+    const totalPages = await getRepositoriesGitHub(username);
 
     if (!developer) return <UserNotFound />;
 
