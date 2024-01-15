@@ -1,16 +1,18 @@
 const REPOS_BY_PAGE = 30;
+
+function handleAPI(response: Response) {
+  if (!response.ok) {
+    throw new Error("A API atingiu o número limite de acessos");
+  }
   
+  return response.json();
+}
+
 export async function getUserGitHub(username: string) {
   try {
-    const user = await fetch(`https://api.github.com/users/${username}`, { next: { revalidate: 10 } });
+    const user = await fetch(`https://api.github.com/users/${username}`, { cache: 'no-store' });
 
-    if (!user.ok) {
-      const errorResponse = await user.json();
-      const errorMessage = errorResponse.message || "Erro desconhecido na API do GitHub";
-      throw new Error(errorMessage);
-    }
-    
-    return user.json();
+    return handleAPI(user);
   } catch (error) {
     console.error(error);
     return null;
@@ -21,13 +23,7 @@ export async function getSearchUserGitHub(username: string) {
   try {
     const search = await fetch(`https://api.github.com/search/users?q=${username}`, { cache: 'no-store' });
 
-    if (!search.ok) {
-      const errorResponse = await search.json();
-      const errorMessage = errorResponse.message || "Erro desconhecido na API do GitHub";
-      throw new Error(errorMessage);
-    }
-
-    return search.json();
+    return handleAPI(search);
   } catch (error) {
     console.error(error);
     return null;
@@ -40,7 +36,7 @@ function calculateTotalPagesWithModulo(totalItems: number, itemsByPage: number):
 
 export async function getRepositoriesGitHub(username: string) {
   try {
-    const repos = await fetch(`https://api.github.com/users/${username}/repos`, { next: { revalidate: 10 } });
+    const repos = await fetch(`https://api.github.com/users/${username}/repos`, { cache: 'no-store'});
 
     if (!repos.ok) {
       const errorResponse = await repos.json();
@@ -62,15 +58,9 @@ export async function getRepositoriesByPage(username: string, currentPage: numbe
   const page = currentPage;
   
   try {
-    const repos = await fetch(`https://api.github.com/users/${username}/repos?page=${page}&per_page=${perPage}`, { next: { revalidate: 10 } });
+    const repos = await fetch(`https://api.github.com/users/${username}/repos?page=${page}&per_page=${perPage}`, { cache: 'no-store'});
 
-    if (!repos.ok) {
-      const errorResponse = await repos.json();
-      const errorMessage = errorResponse.message || "Erro desconhecido na API do GitHub";
-      throw new Error(errorMessage);
-    }
-    
-    return repos.json();
+    return handleAPI(repos);
   } catch (error) {
     console.error(error);
     return null;

@@ -7,7 +7,7 @@ import { generatePagination } from '@/app/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 const PAGINATION_STYLE = {
-  BASE: 'flex h-10 w-10 items-center justify-center text-sm border',
+  BASE: 'flex h-10 w-10 items-center text-white justify-center text-sm border',
   ACTIVE: 'z-10 bg-purple-600 border-purple-600 text-white',
   HOVER: 'hover:bg-purple-800',
   DISABLED: 'pointer-events-none text-gray-300',
