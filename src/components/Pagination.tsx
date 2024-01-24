@@ -26,63 +26,54 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   };
 
   return (
-    <>
-      <div className='inline-flex' role='navigation' aria-label='Navegação de Páginas'>
-        <PaginationArrow
-          direction='left'
-          href={createPageURL(currentPage - 1)}
-          isDisabled={currentPage <= 1}
-        />
-        <div className='flex -space-x-px'>
-          {allPages.map((page, index) => {
-            let position: 'first' | 'last' | 'single' | 'middle' | undefined;
-
-            if (index === 0) position = 'first';
-            if (index === allPages.length - 1) position = 'last';
-            if (allPages.length === 1) position = 'single';
-            if (page === '...') position = 'middle';
-
-            return (
-              <PaginationNumber
-                key={page}
-                href={createPageURL(page)}
-                page={page}
-                isActive={currentPage === page}
-                position={position}
-              />
-            )
-          })}
-        </div>
-        <PaginationArrow
-          direction='right'
-          href={createPageURL(currentPage + 1)}
-          isDisabled={currentPage >= totalPages}
-        />
+    <div className='inline-flex' role='navigation' aria-label='Navegação de Páginas'>
+      <PaginationArrow
+        direction='left'
+        href={createPageURL(currentPage - 1)}
+        isDisabled={currentPage <= 1}
+      />
+      <div className='flex -space-x-px'>
+        {allPages.map((page) => (
+          <PaginationNumber
+            key={page}
+            href={createPageURL(page)}
+            page={page}
+            isActive={currentPage === page}
+            isFirstPage={page === 1}
+            isLastPage={page === totalPages}
+          />
+        ))}
       </div>
-    </>
+      <PaginationArrow
+        direction='right'
+        href={createPageURL(currentPage + 1)}
+        isDisabled={currentPage >= totalPages}
+      />
+    </div>
   )
 }
 
-function PaginationNumber({ page, href, isActive, position }: {
+function PaginationNumber({ page, href, isActive, isFirstPage, isLastPage }: {
   page: number | string;
   href: string;
-  position?: 'first' | 'last' | 'middle' | 'single';
   isActive: boolean;
+  isFirstPage: boolean;
+  isLastPage: boolean;
 }) {
   const className = clsx(
     PAGINATION_STYLE.BASE,
     {
-      'rounded-l-md': position === 'first' || position === 'single',
-      'rounded-r-md': position === 'last' || position === 'single',
+      'rounded-l-md': isFirstPage,
+      'rounded-r-md': isLastPage,
       [PAGINATION_STYLE.ACTIVE]: isActive,
-      [PAGINATION_STYLE.HOVER]: !isActive && position !== 'middle',
-      'text-gray-300': position === 'middle',
+      [PAGINATION_STYLE.HOVER]: !isActive,
+      'text-gray-300': page,
     },
   );
 
   const ariaLabel = isActive ? `${page} (Página Atual)` : `Ir para a Página ${page}`;
 
-  return isActive || position === 'middle' ? (
+  return isActive ? (
     <div className={className}>{page}</div>
   ) : (
     <Link href={href} className={className} aria-label={ariaLabel} role='button' aria-current={isActive ? 'page' : undefined}>
@@ -110,11 +101,7 @@ function PaginationArrow({ href, direction, isDisabled, }: {
     ? `${direction === 'left' ? 'Página Anterior' : 'Próxima Página'} (Desativado)`
     : `${direction === 'left' ? 'Página Anterior' : 'Próxima Página'}`;
 
-  const icon = direction === 'left' ? (
-    <MdKeyboardDoubleArrowLeft className="w-4" />
-  ) : (
-    <MdKeyboardDoubleArrowRight className='w-4' />
-  );
+  const icon = direction === 'left' ? <MdKeyboardDoubleArrowLeft className="w-4" /> : <MdKeyboardDoubleArrowRight className='w-4' />;
 
   return isDisabled ? (
     <div className={className}>{icon}</div>
