@@ -1,6 +1,7 @@
 import Pesquisar from "@/components/Pesquisar";
-import { getUserGitHub } from "./lib/data";
+import { getSearchUserGitHub } from "./lib/data";
 import { GetUser } from "@/components/Buttons";
+import Image from "next/image";
 
 export default async function Home({ searchParams }: {
   searchParams?: {
@@ -8,13 +9,32 @@ export default async function Home({ searchParams }: {
   }
 }) {
   const query = searchParams?.query || '';
-  let developer: Dev = await getUserGitHub(query);
+  const developers = await getSearchUserGitHub(query);
 
   return (
-    <section className="flex min-h-screen items-center justify-center bg-gray-950">
-      <div className="border-2 border-white p-4 rounded-lg flex flex-col">
+    <section className="min-h-screen bg-gray-950">
+      <div className="py-5 px-10">
         <Pesquisar placeholder="Pesquisar usuário..." />
-        {developer != null && <GetUser username={developer.login} />}
+        {developers && <p className="text-white font-medium text-lg">Usuários disponíveis: {developers.total_count}</p>}
+      </div>
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
+          {developers && developers.items.map((developer: Developers) => (
+            <div key={developer.id} className="border-2 border-white rounded-lg w-50 text-center shadow shadow-gray-500 p-3">
+              <Image
+                unoptimized
+                src={developer.avatar_url}
+                alt={developer.login}
+                width={100}
+                height={100}
+                quality={75}
+                className="rounded-full mx-auto"
+              />
+              <h2 className="text-center font-semibold my-2 text-white">{developer.login}</h2>
+              {developer != null && <GetUser username={developer.login} />}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
