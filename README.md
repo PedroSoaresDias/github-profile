@@ -18,19 +18,31 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 A API do GitHub é usada da seguinte forma:
 
-A forma de encontrar o usuário:
+Pesquisar os usuários disponíveis:
 ``` bash
-https://api.github.com/users/{username}
+https://api.github.com/search/users?q={nome de usuário}
 ```
 
-A forma para obter os repositórios do usuário:
+Mostrar sobre o usuário escolhido:
 ``` bash
-https://api.github.com/users/{username}/repos
+https://api.github.com/users/{nome de usuário}
 ```
 
-## A ideia do projeto
+Obter os repositórios do usuário:
+``` bash
+https://api.github.com/users/{nome de usuário}/repos
+```
 
-A ideia para desenvolver esse projeto foi o seguinte, na página principal, possui um campo de pesquisa onde colocar o nome do usuário da plataforma, aparece um botão quando a API encontra o usuário, ao clicar no botão, vai a página do usuário escolhido, que mostra as informações sobre ele e seus repositórios, e um botão que vai para o repositório do GitHub.
+Obter os repositórios do usuário com paginação, está definido 30 repositórios por página como padrão:
+``` bash
+https://api.github.com/users/{username}/repos?per_page=30&page={número de páginas}
+```
+
+## A execução do projeto
+
+Quando a página principal for acessada, possui um campo de pesquisar, quando digitar o usuário de sua escolha, vai mostrar todos os usuários disponíveis dentro da API, essa nova forma de pesquisar foi para facilitar a busca do usuário, mesmo se não souber completamente.
+
+Depois de encontrar o usuário, pode ver as informações sobre o usuário específico, como: (Sua foto de perfil, seu nome de usuário, quando se registrou, sua última atualização, sua descrição de perfil, quantos seguidores possui, quantos está seguindo, e um botão de saiba mais para mais detalhes.), quando estiver na página do usuário, tem uma seção para os repositórios, mas a seção de repositórios vai está disponível se tiver pelo menos um repositório como público, nessa seção possui um sistema de paginação, e também só está disponível se tiver mais de 30 repositórios públicos.
 
 ## Caso não encontro o usuário
 
