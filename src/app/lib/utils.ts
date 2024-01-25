@@ -1,6 +1,6 @@
 const range = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
-export const generatePagination = (currentPage: number, totalPages: number, maxVisiblePages: number = 9): Array<number | string> => {
+export const generatePagination = (currentPage: number, totalPages: number, maxVisiblePages: number = 7): Array<number | string> => {
   if (totalPages <= maxVisiblePages) return range(1, totalPages);
 
   const startPages = range(1, 2);
