@@ -1,6 +1,7 @@
 import { getRepositoriesGitHub, getUserGitHub } from "@/app/lib/data";
 import { UserNotFound } from "@/components/Buttons";
 import { Desenvolvedor } from "@/components/Desenvolvedor";
+import { Loading } from "@/components/Loading";
 import Pagination from "@/components/Pagination";
 import { Repositorio } from "@/components/Repositorio";
 import { Suspense } from "react";
@@ -21,7 +22,7 @@ export default async function Page({ params: { username }, searchParams }: {
 
     return (
       <>
-        <Suspense fallback={<div className="bg-black min-h-screen flex justify-center items-center text-white font-semibold">Carregando...</div>}>
+        <Suspense fallback={<Loading />}>
           <Desenvolvedor username={developer.login} />
           {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
           {developer.public_repos > 30 && totalPages != null && (
