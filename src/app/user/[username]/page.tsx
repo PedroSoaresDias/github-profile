@@ -1,10 +1,8 @@
 import { getRepositoriesGitHub, getUserGitHub } from "@/app/lib/data";
 import { UserNotFound } from "@/components/Buttons";
 import { Desenvolvedor } from "@/components/Desenvolvedor";
-import { Loading } from "@/components/Loading";
 import Pagination from "@/components/Pagination";
 import { Repositorio } from "@/components/Repositorio";
-import { Suspense } from "react";
 
 export default async function Page({ params: { username }, searchParams }: {
   params: { username: string };
@@ -22,15 +20,13 @@ export default async function Page({ params: { username }, searchParams }: {
 
     return (
       <>
-        <Suspense fallback={<Loading />}>
-          <Desenvolvedor username={developer.login} />
-          {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
-          {developer.public_repos > 30 && totalPages != null && (
-            <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
-              <Pagination totalPages={totalPages} />
-            </div>
-          )}
-        </Suspense>
+        <Desenvolvedor username={developer.login} />
+        {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
+        {developer.public_repos > 30 && totalPages != null && (
+          <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
+            <Pagination totalPages={totalPages} />
+          </div>
+        )}
       </>
     );
   } catch (error) {
