@@ -12,25 +12,20 @@ export default async function Page({ params: { username }, searchParams }: {
 }) {
   const currentPage = Number(searchParams?.page) || 1;
 
-  try {
-    const developer: Developer = await getUserGitHub(username);
-    const totalPages = await getRepositoriesGitHub(username);
+  const developer: Developer = await getUserGitHub(username);
+  const totalPages = await getRepositoriesGitHub(username);
 
-    if (!developer) return <UserNotFound />;
+  if (!developer) return <UserNotFound />;
 
-    return (
-      <>
-        <Desenvolvedor username={developer.login} />
-        {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
-        {developer.public_repos > 30 && totalPages != null && (
-          <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
-            <Pagination totalPages={totalPages} />
-          </div>
-        )}
-      </>
-    );
-  } catch (error) {
-    console.log(error);
-    return <p>Ocorreu um erro ao buscar o usuário</p>
-  }
+  return (
+    <>
+      <Desenvolvedor username={developer.login} />
+      {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
+      {developer.public_repos > 30 && totalPages != null && (
+        <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
+          <Pagination totalPages={totalPages} />
+        </div>
+      )}
+    </>
+  );
 }
