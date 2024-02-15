@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'GitHub Profile',
-  description: 'Pesquise o usuário da plataforma GitHub e veja como está o seu progresso',
+  description: 'Encontre o desenvolvedor que você procura na plataforma GitHub, pesquise por profissionais disponíveis, explore seus repositórios e projetos, conheça mais detalhes sobre o perfil escolhido, descubra mais sobre desenvolvedores e organizações da área de tecnologia.',
 }
 
 export default function RootLayout({
