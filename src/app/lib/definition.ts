@@ -27,3 +27,7 @@ type Developers = {
   id: number;
   avatar_url: string;
 }
+
+type TotalCount = {
+  total_count: number;
+}
