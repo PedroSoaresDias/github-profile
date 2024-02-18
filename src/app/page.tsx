@@ -10,17 +10,16 @@ export default async function Home({ searchParams }: {
 }) {
   const query = searchParams?.query || '';
   const developers = await getSearchUserGitHub(query);
-  const {total_count}: TotalCount = await getSearchUserGitHub(query)
 
   return (
     <section className="min-h-screen bg-gray-950">
       <div className="py-5 px-10">
         <Pesquisar placeholder="Pesquisar usuário..." />
-        {total_count && <p className="text-white font-medium text-lg">Usuários disponíveis: {total_count}</p>}
+        {developers && <p className="text-white font-medium text-lg">Usuários disponíveis: {developers.total_count}</p>}
       </div>
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
-          {developers.items.map((developer: Developers) => (
+          {developers && developers.items.map((developer: Developers) => (
             <div key={developer.id} className="border-2 border-white rounded-lg w-50 text-center shadow shadow-gray-500 p-3">
               <Image
                 unoptimized
