@@ -7,10 +7,10 @@ import { generatePagination } from '@/app/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 const PAGINATION_STYLE = {
-  BASE: 'flex h-10 w-10 items-center text-white justify-center text-sm border',
+  BASE: 'flex h-10 w-10 items-center dark:text-white border-1 dark:border-white border-black text-black justify-center text-sm border',
   ACTIVE: 'z-10 bg-purple-600 border-purple-600 text-white',
   HOVER: 'hover:bg-purple-800',
-  DISABLED: 'pointer-events-none text-gray-300',
+  DISABLED: 'pointer-events-none dark:text-gray-300 text-gray-600',
 }
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
@@ -67,7 +67,7 @@ function PaginationNumber({ page, href, isActive, isFirstPage, isLastPage }: {
       'rounded-r-md': isLastPage,
       [PAGINATION_STYLE.ACTIVE]: isActive,
       [PAGINATION_STYLE.HOVER]: !isActive,
-      'text-gray-300': page,
+      [PAGINATION_STYLE.BASE]: page,
     },
   );
 

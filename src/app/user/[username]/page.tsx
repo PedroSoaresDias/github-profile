@@ -22,7 +22,7 @@ export default async function Page({ params: { username }, searchParams }: {
       <Desenvolvedor username={developer.login} />
       {developer.public_repos != 0 && <Repositorio repository={developer.login} currentPage={currentPage} />}
       {developer.public_repos > 30 && totalPages != null && (
-        <div className="pb-6 pt-2 flex w-full justify-center bg-gray-900">
+        <div className="pb-6 pt-2 flex w-full justify-center bg-gray-200 dark:bg-gray-900">
           <Pagination totalPages={totalPages} />
         </div>
       )}

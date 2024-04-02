@@ -6,16 +6,16 @@ export async function Repositorio({ repository, currentPage }: {
 }) {
   const repositories = await getRepositoriesByPage(repository, currentPage);
 
-  if (!repositories) return <div className="py-12 bg-gray-900 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
+  if (!repositories) return <div className="py-12 dark:bg-gray-900 bg-gray-200 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
 
   return (
-    <section className="bg-gray-900 text-gray-50 py-6">
+    <section className="dark:bg-gray-900 bg-gray-200 dark:text-gray-50 text-gray-950 py-6">
       <h3 className="text-center mb-6 text-lg font-bold">Repositórios do usuário</h3>
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
         {repositories.map((repository: Repos) => (
           <div
             key={repository.id}
-            className="bg-gray-700 p-2 mx-3 border-2 rounded-lg border-gray-800 shadow shadow-white"
+            className="dark:bg-gray-700 bg-gray-300 p-2 mx-3 border-2 rounded-lg dark:border-gray-800 border-gray-400 shadow shadow-black dark:shadow-white"
           >
             <h3 className="mb-3">{repository.name}</h3>
             <a

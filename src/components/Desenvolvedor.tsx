@@ -9,8 +9,8 @@ export async function Desenvolvedor({ username }: { username: string }) {
   const updadedAt = new Date(developer.updated_at).toLocaleDateString("pt-BR");
 
   return (
-    <section className="py-2 flex flex-col justify-center items-center bg-black min-h-screen text-gray-50" key={developer.id}>
-      <Link href={"/"} className="my-3 text-center text-gray-50 justify-start font-semibold text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-900">Retornar para pesquisa</Link>
+    <section className="py-2 flex flex-col justify-center items-center dark:bg-black bg-gray-100 min-h-screen text-gray-950 dark:text-gray-100" key={developer.id}>
+      <Link href={"/"} className="my-3 text-center text-gray-100 justify-start font-semibold text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-900">Retornar para pesquisa</Link>
       <br />
       <div className="flex flex-col  justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
         <Image className="rounded-3xl mt-3" src={developer.avatar_url} alt={`foto do usuário ${developer.login}`} width={300} height={300} quality={75} />
