@@ -76,5 +76,5 @@
     "theme_color": "#FFF",
     "background_color": "#FFF",
     "start_url": "/",
-    "display": "standalone"
+    "display": "fullscreen"
 }
