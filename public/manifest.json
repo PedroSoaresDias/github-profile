@@ -1,8 +1,8 @@
 {
     "name": "GitHub Profile",
     "short_name": "GitHub Profile",
-    "theme_color": "#FFFFFF",
-    "background_color": "#FFFFFF",
+    "theme_color": "#FFF",
+    "background_color": "#FFF",
     "start_url": "/",
     "display": "fullscreen",
     "icons": [
