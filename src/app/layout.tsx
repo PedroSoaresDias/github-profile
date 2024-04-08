@@ -7,6 +7,21 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'GitHub Profile',
   description: 'Encontre o desenvolvedor que você procura na plataforma GitHub, pesquise por profissionais disponíveis, explore seus repositórios e projetos, conheça mais detalhes sobre o perfil escolhido, descubra mais sobre desenvolvedores e organizações da área de tecnologia.',
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "GitHub Profile",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "GitHub Profile",
+    title: "GitHub Profile",
+    description: 'Encontre o desenvolvedor que você procura na plataforma GitHub, pesquise por profissionais disponíveis, explore seus repositórios e projetos, conheça mais detalhes sobre o perfil escolhido, descubra mais sobre desenvolvedores e organizações da área de tecnologia.',
+  },
 }
 
 export default function RootLayout({
