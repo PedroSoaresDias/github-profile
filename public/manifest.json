@@ -1,6 +1,10 @@
 {
     "name": "GitHub Profile",
     "short_name": "GitHub Profile",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "display": "fullscreen",
     "icons": [
         {
             "src": "/icons/icon-16x16.png",
@@ -72,9 +76,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "#FFF",
-    "background_color": "#FFF",
-    "start_url": "/",
-    "display": "fullscreen"
+    ]
 }
