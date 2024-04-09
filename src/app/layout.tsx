@@ -1,8 +1,15 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#000' },
+  ]
+}
 
 export const metadata: Metadata = {
   title: 'GitHub Profile',
