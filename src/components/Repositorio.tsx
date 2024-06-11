@@ -11,20 +11,24 @@ export async function Repositorio({ repository, currentPage }: {
   return (
     <section className="dark:bg-gray-900 bg-gray-200 dark:text-gray-50 text-gray-950 py-6">
       <h3 className="text-center mb-6 text-lg font-bold">Repositórios do usuário</h3>
-      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3">
         {repositories.map((repository: Repos) => (
           <div
             key={repository.id}
-            className="dark:bg-gray-700 bg-gray-300 p-2 mx-3 border-2 rounded-lg dark:border-gray-800 border-gray-400 shadow shadow-black dark:shadow-white"
+            className="card card-compact dark:bg-gray-700 bg-gray-300 mx-2 border-2 dark:border-gray-800 border-gray-400 shadow shadow-black dark:shadow-white"
           >
-            <h3 className="mb-3">{repository.name}</h3>
-            <a
-              href={repository.html_url}
-              target="_blank"
-              className="no-underline px-5 py-2 text-base bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300 rounded-lg"
-            >
-              Ver Repositório
-            </a>
+            <div className="card-body">
+              <h3 className="card-title">{repository.name}</h3>
+              <div className="card-actions justify-start">
+                <a
+                  href={repository.html_url}
+                  target="_blank"
+                  className="btn text-base bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300"
+                >
+                  Ver Repositório
+                </a>
+              </div>
+            </div>
           </div>
         ))}
       </div>

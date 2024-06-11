@@ -9,7 +9,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 const PAGINATION_STYLE = {
   BASE: 'flex h-10 w-10 items-center dark:text-white border-1 dark:border-white border-black text-black justify-center text-sm border',
   ACTIVE: 'z-10 bg-purple-600 border-purple-600 text-white',
-  HOVER: 'hover:bg-purple-800',
+  HOVER: 'hover:bg-purple-800 hover:text-white',
   DISABLED: 'pointer-events-none dark:text-gray-300 text-gray-600',
 }
 

@@ -12,8 +12,8 @@ export async function Desenvolvedor({ username }: { username: string }) {
     <section className="py-2 flex flex-col justify-center items-center dark:bg-black bg-gray-100 min-h-screen text-gray-950 dark:text-gray-100" key={developer.id}>
       <Link href={"/"} className="btn my-3 text-center text-gray-100 justify-start font-semibold text-lg bg-purple-700 rounded-lg px-6 py-2 transition-all duration-300 hover:bg-purple-900">Retornar para pesquisa</Link>
       <br />
-      <div className="flex flex-col  justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
-        <Image unoptimized className="rounded-3xl mt-3" src={developer.avatar_url} alt={`foto do usuário ${developer.login}`} width={300} height={300} quality={75} />
+      <div className="mockup-window mb-1 border-2 dark:border-white border-black flex flex-col justify-center items-center w-11/12 md:w-9/12 sm:w-1/2">
+        <Image unoptimized className="rounded-3xl mt-3" src={developer.avatar_url} alt={`foto do usuário ${developer.login}`} width={280} height={280} quality={75} />
         <br />
         <h3 className="text-center font-semibold inline-block">{developer.login}</h3>
         <br />
