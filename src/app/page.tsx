@@ -17,18 +17,16 @@ export default async function Home({ searchParams }: {
         <Pesquisar placeholder="Pesquisar usuário..." />
         {developers && <p className="dark:text-white text-black font-medium text-lg">Usuários disponíveis: {developers.total_count}</p>}
       </div>
-      <div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
-          {developers && developers.items.map((developer: Developers) => (
-            <Developers
-              id={developer.id}
-              image={developer.avatar_url}
-              name={developer.login}
-            >
-              {developer != null && <GetUser username={developer.login} />}
-            </Developers>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
+        {developers && developers.items.map((developer: Developers) => (
+          <Developers
+            id={developer.id}
+            image={developer.avatar_url}
+            name={developer.login}
+          >
+            {developer != null && <GetUser username={developer.login} />}
+          </Developers>
+        ))}
       </div>
     </section>
   )

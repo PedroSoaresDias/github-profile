@@ -10,7 +10,7 @@ function handleAPI(response: Response) {
 
 export async function getUserGitHub(username: string) {
   try {
-    const user = await fetch(`https://api.github.com/users/${username}`, { next: { revalidate: 10 } });
+    const user = await fetch(`https://api.github.com/users/${username}`, { next: { revalidate: 60 } });
 
     return handleAPI(user);
   } catch (error) {
@@ -21,7 +21,7 @@ export async function getUserGitHub(username: string) {
 
 export async function getSearchUserGitHub(username: string) {
   try {
-    const search = await fetch(`https://api.github.com/search/users?q=${username}`, { next: { revalidate: 10 } });
+    const search = await fetch(`https://api.github.com/search/users?q=${username}`, { next: { revalidate: 60 } });
 
     return handleAPI(search);
   } catch (error) {
@@ -36,7 +36,7 @@ function calculateTotalPagesWithModulo(totalItems: number, itemsByPage: number):
 
 export async function getRepositoriesGitHub(username: string) {
   try {
-    const repos = await fetch(`https://api.github.com/users/${username}/repos`, { next: { revalidate: 10 } });
+    const repos = await fetch(`https://api.github.com/users/${username}/repos`, { next: { revalidate: 60 } });
 
     if (!repos.ok) {
       const errorResponse = await repos.json();
@@ -58,7 +58,7 @@ export async function getRepositoriesByPage(username: string, currentPage: numbe
   const page = currentPage;
   
   try {
-    const repos = await fetch(`https://api.github.com/users/${username}/repos?page=${page}&per_page=${perPage}`, { next: { revalidate: 10 } });
+    const repos = await fetch(`https://api.github.com/users/${username}/repos?page=${page}&per_page=${perPage}`, { next: { revalidate: 60 } });
 
     return handleAPI(repos);
   } catch (error) {
