@@ -1,10 +1,14 @@
+"use client"
+
+import { use } from "react";
 import { getRepositoriesByPage } from "@/app/lib/data";
 
-export async function Repositorio({ repository, currentPage }: {
+export function Repositorio({ repository, currentPage }: {
   repository: string;
   currentPage: number;
 }) {
-  const repositories = await getRepositoriesByPage(repository, currentPage);
+  // const repositories = await getRepositoriesByPage(repository, currentPage);
+  const repositories = use(getRepositoriesByPage(repository, currentPage));
 
   if (!repositories) return <div className="py-12 dark:bg-gray-900 bg-gray-200 flex justify-center items-center font-bold text-2xl">Nenhum repositório disponível</div>
 
