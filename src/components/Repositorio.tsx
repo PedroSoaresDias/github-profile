@@ -1,3 +1,5 @@
+"use client"
+
 import { getRepositoriesByPage } from "@/app/lib/data";
 import { use } from "react";
 

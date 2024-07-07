@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import { getUserGitHub } from "@/app/lib/data";
 import Link from "next/link";
