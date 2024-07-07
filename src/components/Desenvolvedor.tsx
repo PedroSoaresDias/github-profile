@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { getUserGitHub } from "@/app/lib/data";
 import Link from "next/link";
+import { use } from "react";
 
-export async function Desenvolvedor({ username }: { username: string }) {
-  const developer: Developer = await getUserGitHub(username);
-  // const developer: Developer = use(getUserGitHub(username))
+export function Desenvolvedor({ username }: { username: string }) {
+  // const developer: Developer = await getUserGitHub(username);
+  const developer: Developer = use(getUserGitHub(username))
 
   const createdAt = new Date(developer.created_at).toLocaleDateString("pt-BR");
   const updadedAt = new Date(developer.updated_at).toLocaleDateString("pt-BR");
