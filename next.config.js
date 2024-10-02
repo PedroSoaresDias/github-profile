@@ -35,7 +35,7 @@ module.exports = withPWA({
 //         headers: [
 //           {
 //             key: 'Content-Security-Policy',
-//             value: "default-src 'self'; script-src 'self';"
+//             value: "default-src 'self'; script-src 'self' https://api.github.com 'strict-dynamic'; connect-src 'self' https://api.github.com; style-src 'self'; img-src 'self' 'strict-dynamic' https://avatars.githubusercontent.com data:;"
 //           },
 //         ],
 //       },
