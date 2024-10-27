@@ -27,3 +27,10 @@ type Developers = {
   id: number;
   avatar_url: string;
 }
+
+type Params = Promise<{ username: string }>
+
+type SearchParams = Promise<{
+  query?: string | undefined;
+  page?: string | number | undefined;
+}>

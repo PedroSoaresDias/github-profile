@@ -24,7 +24,7 @@ module.exports = {
 
 module.exports = withPWA({
   reactStrictMode: true,
-  swcMinify: true
+  // swcMinify: true
 });
 
 // module.exports = {

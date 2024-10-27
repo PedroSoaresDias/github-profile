@@ -3,13 +3,13 @@ import { getSearchUserGitHub } from "./lib/data";
 import { GetUser } from "@/components/Buttons";
 import { Developers } from "@/components/Developers";
 
-export default async function Home({ searchParams }: {
-  searchParams?: {
-    query?: string;
-  }
+export default async function Home(props: {
+  searchParams: SearchParams
 }) {
-  const query = searchParams?.query || '';
-  const developers = await getSearchUserGitHub(query);
+
+  const { query } = await props.searchParams;
+  const userQuery = query || "";
+  const developers = await getSearchUserGitHub(userQuery);
 
   return (
     <section className="min-h-screen bg-gray-50 dark:bg-gray-950">

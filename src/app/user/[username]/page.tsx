@@ -4,13 +4,14 @@ import { Desenvolvedor } from "@/components/Desenvolvedor";
 import Pagination from "@/components/Pagination";
 import { Repositorio } from "@/components/Repositorio";
 
-export default async function Page({ params: { username }, searchParams }: {
-  params: { username: string };
-  searchParams?: {
-    page?: string;
-  }
+export default async function Page(props: {
+  params: Params;
+  searchParams: SearchParams
 }) {
-  const currentPage = Number(searchParams?.page) || 1;
+
+  const { username } = await props.params;
+  const { page } = await props.searchParams;
+  const currentPage = Number(page) || 1;
 
   const developer: Developer = await getUserGitHub(username);
   const totalPages = await getRepositoriesGitHub(username);
