@@ -1,5 +1,20 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
+      }
+    ]
+  },
+  experimental: {
+    reactCompiler: true
+  }
+}
+
+export default nextConfig;
 
 const withPWA = require("@ducanh2912/next-pwa").default({
   dest: "public",
@@ -9,18 +24,18 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   sw: "service-worker.js"
 });
 
-module.exports = nextConfig
+// module.exports = nextConfig
 
-module.exports = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com'
-      }
-    ]
-  }
-}
+// module.exports = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'avatars.githubusercontent.com'
+//       }
+//     ]
+//   },
+// }
 
 module.exports = withPWA({
   reactStrictMode: true,
