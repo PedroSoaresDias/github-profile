@@ -14,6 +14,7 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.20",
+    "babel-plugin-react-compiler": "^19.0.0-beta-37ed2a7-20241206",
     "clsx": "^2.1.1",
     "github-profile": "file:",
     "next": "^15.0.4",
