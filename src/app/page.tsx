@@ -8,7 +8,7 @@ export default async function Home(props: {
 }) {
 
   const { query } = await props.searchParams;
-  const userQuery = query || "";
+  const userQuery = query ?? "";
   const developers = await getSearchUserGitHub(userQuery);
 
   return (
@@ -20,11 +20,12 @@ export default async function Home(props: {
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 px-10 pb-4">
         {developers && developers.items.map((developer: Developers) => (
           <Developers
+            key={developer.id}
             id={developer.id}
             image={developer.avatar_url}
             name={developer.login}
           >
-            {developer != null && <GetUser username={developer.login} />}
+            <GetUser username={developer.login} />
           </Developers>
         ))}
       </div>
