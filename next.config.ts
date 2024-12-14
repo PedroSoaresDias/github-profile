@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ]
   },
   experimental: {
-    reactCompiler: false
+    reactCompiler: true
   }
 }
 
