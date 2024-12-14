@@ -3,6 +3,8 @@ import { getSearchUserGitHub } from "./lib/data";
 import { GetUser } from "@/components/Buttons";
 import { Developers } from "@/components/Developers";
 
+export const revalidate = 120;
+
 export default async function Home(props: {
   searchParams: SearchParams
 }) {

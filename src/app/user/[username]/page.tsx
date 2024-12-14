@@ -4,6 +4,8 @@ import { Desenvolvedor } from "@/components/Desenvolvedor";
 import Pagination from "@/components/Pagination";
 import { Repositorio } from "@/components/Repositorio";
 
+export const revalidate = 120;
+
 export default async function Page(props: {
   params: Params;
   searchParams: SearchParams
