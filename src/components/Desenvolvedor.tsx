@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getUserGitHub } from "@/app/lib/data";
 import Link from "next/link";
 
-export async function Desenvolvedor({ username }: { username: string }) {
+export default async function Desenvolvedor({ username }: { username: string }) {
   const developer: Developer = await getUserGitHub(username);
 
   const createdAt = new Date(developer.created_at).toLocaleDateString("pt-BR");

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export function Developers({ id, image, name, children }:
+export default function Developers({ id, image, name, children }:
   {
     id: number,
     image: string,

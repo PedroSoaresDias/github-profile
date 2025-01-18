@@ -1,6 +1,6 @@
 import { getRepositoriesByPage } from "@/app/lib/data";
 
-export async function Repositorio({ repository, currentPage }: {
+export default async function Repositorio({ repository, currentPage }: {
   repository: string;
   currentPage: number;
 }) {

@@ -1,14 +1,18 @@
-import Pesquisar from "@/components/Pesquisar";
+// import Pesquisar from "@/components/Pesquisar";
+import dynamic from "next/dynamic";
 import { getSearchUserGitHub } from "./lib/data";
-import { GetUser } from "@/components/Buttons";
-import { Developers } from "@/components/Developers";
+// import GetUser from "@/components/GetUser";
+// import Developers from "@/components/Developers";
+
+const Pesquisar = dynamic(() => import("@/components/Pesquisar"));
+const GetUser = dynamic(() => import("@/components/GetUser"));
+const Developers = dynamic(() => import("@/components/Developers"));
 
 export const revalidate = 120;
 
 export default async function Home(props: {
   searchParams: SearchParams
 }) {
-
   const { query } = await props.searchParams;
   const userQuery = query ?? "";
   const developers = await getSearchUserGitHub(userQuery);
