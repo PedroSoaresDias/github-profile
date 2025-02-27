@@ -8,7 +8,7 @@ export default function Developers({ id, image, name, children }:
     children: React.ReactNode
   }) {
   return (
-    <div key={id} className="mockup-window border-2 dark:border-white border-black w-50 text-center shadow shadow-gray-700 dark:shadow-gray-500 p-3">
+    <div key={id} className="mockup-window border-2 dark:border-white border-black w-ms text-center shadow-sm shadow-gray-700 dark:shadow-gray-500 p-3">
       <Image
         unoptimized
         src={image}

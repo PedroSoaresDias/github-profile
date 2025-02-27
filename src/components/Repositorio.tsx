@@ -15,7 +15,7 @@ export default async function Repositorio({ repository, currentPage }: {
         {repositories.map((repository: Repos) => (
           <div
             key={repository.id}
-            className="card card-compact dark:bg-gray-700 bg-gray-300 mx-2 border-2 dark:border-gray-800 border-gray-400 shadow shadow-black dark:shadow-white"
+            className="card dark:bg-gray-700 bg-gray-300 mx-2 border-2 dark:border-gray-800 border-gray-400 shadow-sm shadow-black dark:shadow-white"
           >
             <div className="card-body">
               <h3 className="card-title">{repository.name}</h3>
@@ -23,7 +23,7 @@ export default async function Repositorio({ repository, currentPage }: {
                 <a
                   href={repository.html_url}
                   target="_blank"
-                  className="btn text-base bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300"
+                  className="btn btn-lg text-base rounded-xl bg-purple-700 text-gray-50 font-semibold hover:bg-purple-900 transition-all duration-300"
                 >
                   Ver Repositório
                 </a>

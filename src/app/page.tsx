@@ -1,9 +1,5 @@
-// import Pesquisar from "@/components/Pesquisar";
 import dynamic from "next/dynamic";
 import { getSearchUserGitHub } from "./lib/data";
-// import GetUser from "@/components/GetUser";
-// import Developers from "@/components/Developers";
-
 const Pesquisar = dynamic(() => import("@/components/Pesquisar"));
 const GetUser = dynamic(() => import("@/components/GetUser"));
 const Developers = dynamic(() => import("@/components/Developers"));

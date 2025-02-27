@@ -1,14 +1,10 @@
 import { getRepositoriesGitHub, getUserGitHub } from "@/app/lib/data";
 import dynamic from "next/dynamic";
-// import { UserNotFound } from "@/components/Buttons";
-// import { Desenvolvedor } from "@/components/Desenvolvedor";
-// import Pagination from "@/components/Pagination";
-// import { Repositorio } from "@/components/Repositorio";
 
 const Desenvolvedor = dynamic(() => import("@/components/Desenvolvedor"));
 const Repositorio = dynamic(() => import("@/components/Repositorio"));
 const Pagination = dynamic(() => import("@/components/Pagination"));
-// const UserNotFound = dynamic(() => import("@/components/UserNotFound"))
+const UserNotFound = dynamic(() => import("@/components/UserNotFound"))
 
 export const revalidate = 120;
 
@@ -23,7 +19,7 @@ export default async function Page(props: {
   const developer: Developer = await getUserGitHub(username);
   const totalPages = await getRepositoriesGitHub(username);
 
-  // if (!developer) return <UserNotFound />;
+  if (!developer) return <UserNotFound />;
 
   return (
     <>
