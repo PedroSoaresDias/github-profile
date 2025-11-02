@@ -9,9 +9,9 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  // experimental: {
-  //   reactCompiler: false
-  // }
+  turbopack: {
+    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
+  },
 }
 
 export default nextConfig;
@@ -24,22 +24,18 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   sw: "service-worker.js"
 });
 
-// module.exports = nextConfig
-
-// module.exports = {
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'avatars.githubusercontent.com'
-//       }
-//     ]
-//   },
-// }
-
 module.exports = withPWA({
-  reactStrictMode: true,
-  // swcMinify: true
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
+      }
+    ]
+  },
+  turbopack: {
+    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
+  },
 });
 
 // module.exports = {
